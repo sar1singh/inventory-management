@@ -1,0 +1,38 @@
+<section class="dashboard">
+    <div class="row text-center wrapper">
+        <div class="col-md-12">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row wrapper">
+        <div class="col-md-12">
+            <button type="button" (click)="addProduct()" class="btn btn-success float-right">
+                Add Product</button>
+        </div>
+    </div>
+    <div class="row wrapper">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Store Name</th>
+                  </tr>
+                </thead>
+                <tbody class="table-striped">
+                    <ng-container *ngFor="let item of products">
+                    <tr>
+                        <td>{{item.name}}</td>
+                        <td>{{item.productId}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.storeName}}</td>
+                    </tr>
+                    </ng-container>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    </section>
