@@ -22,4 +22,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['product/add']);
   }
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['login']); 
+  }
+
 }
