@@ -3,9 +3,11 @@ module.exports = {
       port: process.env.PORT || 3000,
       saltingRounds: 10
     },
+    //Db creds will be moved to ENV file, while going to production.
     db:{
-        HOST: "database-1.cfmiwud6chfq.us-east-2.rds.amazonaws.com",
+        HOST: "database-2.cfmiwud6chfq.us-east-2.rds.amazonaws.com",
         USER: "root",
-        PASSWORD: "tDG7JeDE7TE_-v8"
+        PASSWORD: "mypassword",
+        DATBASE:"inventory"
     }
   }

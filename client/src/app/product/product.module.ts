@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ProductAddComponent } from './add.component';
+import { ProductViewComponent } from './view.component';
 import { RouterModule } from '@angular/router';
 import { ProductRoutingModule } from './product-routing.module'
 
 @NgModule({
-  declarations: [ProductComponent,ProductAddComponent],
+  declarations: [ProductComponent,ProductAddComponent,ProductViewComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

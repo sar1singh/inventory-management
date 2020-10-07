@@ -18,6 +18,7 @@ app.get('/',(req,res)=>{
 });
 
 require('./routes/index.js')(app);
+require('./routes/products.js')(app);
 
 
 

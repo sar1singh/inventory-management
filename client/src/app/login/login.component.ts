@@ -26,11 +26,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-      this.apiService.post('login',{
-      "username": this.loginForm.get('username').value,
-      "password": this.loginForm.get('password').value}).subscribe(res=>{
+    let username = this.loginForm.get('username').value;
+    let payload = {data:{
+      "username": username,
+      "password": this.loginForm.get('password').value
+    }}
+      this.apiService.post('login',payload).subscribe(res=>{
         if(res.status =='Success') {
-          localStorage.setItem('token',res.token)
+          localStorage.setItem('token',res.data)
+          localStorage.setItem('username',username)
           this.router.navigate(['dashboard']); 
         } else {
           alert(res.message)

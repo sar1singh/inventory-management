@@ -1,20 +1,18 @@
 const sql = require("./db.js");
 
 const User = function(user) {
-    this.email = user.email;
+    this.username = user.username;
     this.password = user.password
 }
 
 User.login = (user,result) => {
-    sql.query("SELECT * FROM users", (err, res) => {
+    let query = "SELECT * FROM users WHERE username='"+user.username+"' AND password='"+user.password+"' AND status='Active'";
+    sql.query(query, (err, res) => {
         if (err) {
-          console.log("error: ", err);
-          result(null, err);
+          result(null);
           return;
         }
-    
-        console.log("customers: ", res);
-        result(null, res);
+        result(res);
       });
 }
 

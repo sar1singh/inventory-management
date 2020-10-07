@@ -1,5 +1,4 @@
-// const userObj = require("../models/user.model");
-const bcrypt = require('bcrypt');
+const userObj = require("../models/user.model");
 const jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -10,23 +9,26 @@ module.exports = {
         });
       }
     //check if user name password exist in DB.
-    const { username, password } = req.body;
-
+    const { data } = req.body;
     let result = {};
-    if(password =='sarwan') {
+    userObj.login(data,(value)=>{
+      if(value.length > 0) {
       // Create a token
-      const payload = { user: username };
-      const options = { expiresIn: '1m',};
+      const payload = data;
+      const options = { expiresIn: '10m',};
       const secret = 'addjsonwebtokensecretherelikeQuiscustodietipsoscustodes'; //for production this will be saved in env file.
       const token = jwt.sign(payload, secret, options);
 
-      result.token = token;
+      //we can later save this token in DB or Cache. to add JWT auth for every API
+      result.data = token;
       result.status = 'Success';
-    } else {
-      status = 'Failure';
-      result.status = status;
-      result.message = `Authentication error.`;
-    }
-    res.status(200).send(result);
+      result.message= 'User found.'
+      } else {
+        result.data = value;
+        result.status = 'Failure';
+        result.message= 'Unauthorized Access.User not found.'
+      }
+      res.send(result);
+    });
   }
 }
