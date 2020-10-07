@@ -5,7 +5,7 @@ module.exports = {
         var records = [
             [data.name,data.productId,data.type,data.storeName,'Active',data.createdBy]
           ];
-        let query = "INSERT INTO `inventory`.`products` (name`, `product_id`, `type`, `store_name`, `status`, `created_by`)"+
+        let query = "INSERT INTO `inventory`.`products` (`name`, `product_id`, `type`, `store_name`, `status`, `created_by`)"+
          " VALUES ?";
         sql.query(query,[records] ,(err, res) => {
             if (err) {

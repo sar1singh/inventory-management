@@ -35,7 +35,7 @@ export class ApiService {
 
   post(api,body): Observable<any> {
     var headers;
-      if(api !='login') {
+      if(api !='login' && api !='register') {
         headers= new HttpHeaders()
         .set('content-type', 'application/json')
         .set('Access-Control-Allow-Origin', '*')

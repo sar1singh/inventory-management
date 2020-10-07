@@ -17,6 +17,7 @@ module.exports = {
       const { data } = req.body;
       let result = {};
       productObj.add(data,(response)=>{
+        console.log(response)
         if(response && response.insertId) {
           result.data = response.insertId;
           result.status = 'Success';

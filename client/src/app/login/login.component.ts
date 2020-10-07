@@ -10,7 +10,8 @@ import { ApiService } from '../services/api.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: any;
-
+  registerForm:any;
+  showLoginForm:boolean=true;
   constructor(private fb: FormBuilder,private router: Router,private apiService: ApiService)
    { }
 
@@ -23,6 +24,38 @@ export class LoginComponent implements OnInit {
       username:['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  createRegisterForm() {
+    this.registerForm= this.fb.group({
+      username:['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
+  }
+
+  register() {
+    let username = this.registerForm.get('username').value;
+    let password = this.registerForm.get('password').value;
+    let cpassword = this.registerForm.get('confirmPassword').value;
+    if(password !== cpassword) {
+      alert('Password do not match.');
+    } else {
+      let payload = {data:{
+        "username": username,
+        "password": password
+      }}
+      this.apiService.post('register',payload).subscribe(res=>{
+        console.log(res);
+        if(res.status =='Success') {
+          alert(res.message);
+          this.showLoginForm =true;
+        } else {
+          alert(res.message)
+        }
+      });
+    }
+
   }
 
   login() {
@@ -40,6 +73,10 @@ export class LoginComponent implements OnInit {
           alert(res.message)
         }
       });
+  }
+
+  addUser() {
+
   }
 
 }

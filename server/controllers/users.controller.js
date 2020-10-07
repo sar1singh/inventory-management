@@ -30,5 +30,38 @@ module.exports = {
       }
       res.send(result);
     });
-  }
+  },
+  addUser: (req, res) => {
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!"
+      });
+    }
+  //check if user name password exist in DB.
+  const { data } = req.body;
+  let result = {};
+  userObj.checkExist(data,(value)=>{
+    if(value.length > 0) {
+      data.id = value[0].id
+      //update status & password if user exists.
+      userObj.activateUser(data,(updateRes)=> {
+        if(updateRes && updateRes.affectedRows) {
+          result.data = data.id;
+          result.status = 'Success';
+          result.message= 'User created Successfully.'
+          res.send(result);
+        }
+      });
+    } else {
+      userObj.userAdd(data,(insertRes)=>{
+        if(updateRes && insertRes.insertId) {
+          result.data = insertRes.insertId;
+          result.status = 'Success';
+          result.message= 'User inserted Successfully.'
+          res.send(result);
+        }
+      });
+    }
+  });
+}
 }
