@@ -10,6 +10,9 @@ Run `npm install` command in both "client" & "server" folder.
 
 Run `npm start` inside "client" folder to start frontend server. Server will be listening on `http://localhost:4200`;
 
-## Backend Installation
+## Backend Server Start
 
 Run `npm start` inside "server" folder to start frontend server. Server will be listening on `http://localhost:4200`;
+
+## REQUIREMENTS COVERED
+ - ALL Functional Requirements.
