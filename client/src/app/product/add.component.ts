@@ -35,7 +35,7 @@ export class ProductAddComponent {
     }};
       this.apiService.post('product/add',payload).subscribe(res=>{
         if(res.status =='Success') {
-          localStorage.setItem('token',res.token)
+          alert(res.message);
           this.router.navigate(['dashboard']); 
         } else {
           alert(res.message)

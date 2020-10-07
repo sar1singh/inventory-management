@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         "password": password
       }}
       this.apiService.post('register',payload).subscribe(res=>{
-        console.log(res);
         if(res.status =='Success') {
           alert(res.message);
           this.showLoginForm =true;
