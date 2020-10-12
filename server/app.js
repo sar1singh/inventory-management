@@ -4,7 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 
 const app = express();
-const environment = process.env.NODE_ENV;
+const environment = 'development';
 const stage = require('./config')[environment];
 app.use(cors());
 app.use(bodyParser.json());
